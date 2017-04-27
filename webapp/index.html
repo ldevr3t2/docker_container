@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<!--
+	Modified from
+	Ethereal by HTML5 UP
+-->
+<html>
+	<head>
+		<title>VT Musica</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+		<!-- Main Stylesheets -->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/style.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+		<!-- Favicons -->
+		<link rel="apple-touch-icon" sizes="57x57" href="images/icons/apple-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="images/icons/apple-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="images/icons/apple-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="images/icons/apple-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="images/icons/apple-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="images/icons/apple-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="images/icons/apple-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="images/icons/apple-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="images/icons/apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="192x192"  href="images/icons/android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="images/icons/favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="images/icons/favicon-16x16.png">
+		<link rel="manifest" href="images/icons/manifest.json">
+		<meta name="msapplication-TileColor" content="#ffffff">
+		<meta name="msapplication-TileImage" content="images/icons/ms-icon-144x144.png">
+		<meta name="theme-color" content="#ffffff">
+	</head>
+	<body>
+		<!-- Page Wrapper -->
+		<div id="page-wrapper">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Panel (Banner) -->
+				<section class="panel banner right">
+					<div class="content color0 span-3-75">
+						<img src="images/musica_logo.png" width="100%" height="auto">
+						<p><!--[-->This is <strong>VT Musica</strong>, a song recognition and recommendation service. Feel free to try us out!<!--]--></p>
+						<ul class="actions">
+							<li><a href="#recognition" class="button special color1 circle icon fa-angle-right">Next</a></li>
+						</ul>
+					</div>
+					<div class="inner columns aligned table-of-contents">
+						<div class="span-1-95" data-position="25% 25%">
+							<h4>Contents</h4>
+							<ul class="alt">
+								<li></li>
+								<li><a href="#recognition" id="recognitionSection">Song Recognition</a></li>
+								<li><a href="#recommendation" id="recommendationSection">Artist Recommendation</a></li>
+								<li><a href="#about">About Us</a></li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<!-- Panel -->
+				<section id="recognition" class="panel color1">
+					<div class="intro joined">
+						<h2 class="major">Song Recognition</h2>
+						<p>We'll tell you the song and artist that's playing.</p>
+					</div>
+					<div class="inner" data-type="mp3">
+						<!-- Recording Options -->
+						<ul class="actions">
+							<li><a id="record" class="button icon fa-microphone">Record</a></li>
+							<li><a class="button disabled one" id="pause">Pause</a></li>
+							<li><a class="button disabled one" id="stop">Stop and Reset</a></li>
+							<li><a class="button disabled one" id="search">Search</a></li>
+						</ul>
+						<canvas id="level" height="200" width="500"></canvas>
+						<h3 id="match" style="display: none;">Your Match:</h3>
+					</div>
+				</section>
+
+				<!-- Panel -->
+				<section id="recommendation" class="panel color2-alt">
+					<div class="intro color2">
+						<h2 class="major">Artist Recommendation</h2>
+						<p>We'll find you some artists based off of the ones you like.</p>
+					</div>
+					<div class="inner columns aligned">
+						<div class="span-4-5">
+							<h3 class="major">Input Artists</h3>
+							<form id="recommendationForm" method="post">
+								<div class="field" id="field">
+									<input type="text" name="artist-0" id="artist-0" value="" placeholder="e.g. Van Halen" />
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Submit" class="special color2" /></li>
+<!-- 									<li><a id="addArtist" type="button" class="button icon fa-plus">Add Artist</a></li> -->
+									<li><input id="reset" type="reset" value="Reset" /></li>
+								</ul>
+							</form>
+							<h3 id="recommendationMatch" style="display: none;">We Recommend</h3>
+							<div id="recommendationSpinner" class="spinner" style="display: none;">
+							  <div class="double-bounce1"></div>
+							  <div class="double-bounce2"></div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- Panel -->
+				<section id="about" class="panel color4-alt">
+					<div class="intro color4">
+						<h2 class="major">About Us</h2>
+						<p>VT Musica is a song recognition and recommendation software. Use this application to discover music and artists, as well as contribute to our ever-growing database of songs for identification!</p>
+					</div>
+					<div class="inner columns divided">
+						<div class="span-1-25">
+
+							<h4>More Information</h4>
+
+							<ul class="contact-icons color4">
+								<li class="icon fa-file-text"><a href="https://github.com/ldevr3t2/docker_container">Documentation for Dockerizing</a></li>
+								<li class="icon fa-github"><a href="https://github.com/ldevr3t2/team_testing/tree/master/testing_videos">Testing + Videos</a></li>
+							</ul>
+
+						</div>
+					</div>
+				</section>
+
+			<!-- Copyright -->
+				<div class="copyright">&copy; VT Musica, Ldevr3t2.github.io</div>
+
+			</div>
+
+		</div>
+
+		<!-- Appended at end of page to improve loading -->
+		<!-- Variable stating that this is NOT a test environment -->
+		<script>
+			var isTest = false;
+		</script>
+
+			<!-- JQuery -->
+		<script src="assets/js/jquery.min.js"></script>
+			<!-- Main -->
+		<script src="assets/js/skel.min.js"></script>
+		<script src="assets/js/main.js"></script>
+			<!-- Dynamic Form Input -->
+		<script src="assets/js/form.js"></script>
+			<!-- Microphone Capture -->
+		<script src="assets/js/audio/recorder.js"></script>
+		<script src="assets/js/audio/Fr.voice.js"></script>
+		<script src="assets/js/audio/app.js"></script>
+	</body>
+</html>
