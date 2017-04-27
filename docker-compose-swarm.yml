@@ -1,9 +1,9 @@
-#specify the versuion capabilities
+#specify the version capabilities
 version: "1"
 
 #specify the services
 services:
-  #teh web application
+  #the web application
   docker_storage:
     image: "web_app"
     build: ./webapp

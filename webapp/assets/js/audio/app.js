@@ -156,7 +156,7 @@ $(document).ready(function(){
 
     $("#match").css("display", "block");
     $("#match").html("Please wait while we retrieve your results.");
-    
+
     if(isTest) {
       $("#match").css("display", "block");
       $("#match").html("No Results Found.");
@@ -165,7 +165,7 @@ $(document).ready(function(){
         var formData = new FormData();
         formData.append('music_buffer', base64);
 
-        var url = "http://ec2-52-36-24-190.us-west-2.compute.amazonaws.com:8080/team2/fingerprint";
+        var url = musicURL;
         $.ajax({
           url: url,
           type: 'POST',

@@ -1,11 +1,7 @@
 web:
-  build: ./web
+  build: ./webapp
   ports:
-   - "8000:8000"
-  volumes:
-   - .:/code
-  links:
-   - db
+   - "8080:8080"
 db:
   image: mongo:3.0.2
   command: mongod --dbpath /data/db --smallfiles

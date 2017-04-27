@@ -41,7 +41,7 @@ $(document).ready(function() {
        		$("#recommendationMatch").html("Please input an artist into the first field.");
 		} else {
 
-			var url = "http://192.168.99.100:8081/v1/" + encodeURIComponent($("#artist-0").val());
+			var url = artistURL + encodeURIComponent($("#artist-0").val());
 
 			$("#recommendationSpinner").css("display", "block");
 			$("#recommendationMatch").css("display", "block");
