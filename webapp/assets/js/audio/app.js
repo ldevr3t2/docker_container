@@ -153,6 +153,10 @@ $(document).ready(function(){
   });
 
   $(document).on("click", "#search:not(.disabled)", function(){
+
+    $("#match").css("display", "block");
+    $("#match").html("Please wait while we retrieve your results.");
+    
     if(isTest) {
       $("#match").css("display", "block");
       $("#match").html("No Results Found.");
