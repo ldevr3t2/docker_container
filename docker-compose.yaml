@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+  web:
+    build: ./webapp
+    ports:
+     - "8080:8080"
+  db:
+    image: mongo:3.0.2
+    command: mongod --dbpath /data/db --smallfiles
+    volumes:
+        - db-data:/data/db
+  fingerprint:
+    build: ./fingerprint
+    ports:
+     - "5000:5000"
+    volumes:
+         - .:/code
+  
+  # ilya's containers
+  suggest-server:
+      build: ./music_suggest
+      command: python3 -m swagger_server --host 0.0.0.0
+      expose:
+        - 8080
+      ports:
+        - "8081:8080"
+      networks:
+        back-end:
+          aliases:
+            - suggest-server
+        front-end:
+          aliases:
+            - suggest-server
+  api_testing:      
+    build: ./music_suggest/testing/newman
+    image: "music-suggest-testing"
+    links:
+      - suggest-server
+    networks:
+      - front-end
+  # END ilya's containers
+
+
+volumes:
+  db-data:
+
+networks:
+  front-end:
+  back-end:
