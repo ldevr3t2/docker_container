@@ -1,5 +1,6 @@
 #specify the version capabilities
-version: "1"
+# let's use version 3 (changed by Ilya)
+version: "3"
 
 #specify the services
 services:
@@ -28,5 +29,3 @@ services:
 
 volumes:
   db-data:
-
-
