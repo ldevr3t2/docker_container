@@ -4,28 +4,19 @@ version: "3"
 
 #specify the services
 services:
-  #the web application
-  docker_storage:
-    image: "web_app"
+  web:
     build: ./webapp
-    expose:
-      - 8080
     ports:
-      - "8080:8080"  
-    environment:
-    deploy:
-      mode: replicated
-      replicas: 2
-      placement:
-        constraints: [node.role == worker]
-  db:
-    image: mongo:3.0.2
-    command: mongod --dbpath /data/db --smallfiles
-    volumes:
-        - "db-data:/data/db"
+     - "8080:8080"
+     - "80:80"
+    links:
+      - suggest-server
+    networks:
+      - front-end
     deploy:
       placement:
-        constraints: [node.role == manager]
+        constraints: [node.role == manager] 
+
 
 volumes:
   db-data:

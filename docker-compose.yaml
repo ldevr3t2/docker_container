@@ -6,6 +6,11 @@ services:
     ports:
      - "8080:8080"
      - "80:80"
+    links:
+      - suggest-server
+    networks:
+      - front-end
+
   db:
     image: mongo:3.0.2
     command: mongod --dbpath /data/db --smallfiles
@@ -26,6 +31,8 @@ services:
         - 8080
       ports:
         - "8081:8080"
+      links:
+        - db
       networks:
         back-end:
           aliases:
@@ -33,6 +40,7 @@ services:
         front-end:
           aliases:
             - suggest-server
+
   api_testing:      
     build: ./music_suggest/testing/newman
     image: "music-suggest-testing"

@@ -48,7 +48,7 @@ $(document).ready(function() {
           	$("#recommendationMatch").html("Please wait while we retrieve your results.");
 
 			$.ajax({
-	           type: "POST",
+	           type: "GET",
 	           crossDomain: true,
 	           url: url,
 	           data: $("#idForm").serialize(), // serializes the form's elements.
@@ -70,8 +70,10 @@ $(document).ready(function() {
 	       			$("#recommendationMatch").css("display", "block");
 	              	$("#recommendationMatch").html("We recommend " + bestArtist);
 	           },
-	           error: function() {
-	           		$("#recommendationSpinner").css("display", "none");
+	           error: function(xhr, status, error) {
+  				var err = eval("(" + xhr.responseText + ")");
+  				alert(err.Message);
+			   	$("#recommendationSpinner").css("display", "none");
 	           		$("#recommendationMatch").css("display", "block");
 	           		$("#recommendationMatch").html("Sorry, we don't have any recommendations from your query.");
 	           }
