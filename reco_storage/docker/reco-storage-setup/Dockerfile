@@ -1,4 +1,4 @@
-FROM reco-storage-mongodb
+FROM musica-storage-mongodb
 
 WORKDIR /home/setup
 
