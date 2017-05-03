@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  suggest-server:
+    build: ./
+    command: python3 -m swagger_server --host 0.0.0.0
+    expose:
+      - 8080
+    ports:
+      - "8081:8080"
+    networks:
+      back-end:
+        aliases:
+          - suggest-server
+      front-end:
+        aliases:
+          - suggest-server
+  api_testing:      
+    build: ./testing/newman
+    image: "music-suggest-testing"
+    links:
+      - suggest-server
+    networks:
+      - front-end
+
+  encoder_unit_testing:
+    build: ./testing/unittest
+    image: "unit-testing"
+
+networks:
+  front-end:
+  back-end:

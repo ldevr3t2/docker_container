@@ -1,0 +1,6 @@
+connexion == 1.0.129
+python_dateutil == 2.6.0
+setuptools >= 21.0.0
+requests >= 2.10.0
+lxml >= 3.7.0
+beautifulsoup4 >= 4.5.0

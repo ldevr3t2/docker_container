@@ -1,0 +1,91 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Music Suggestion API",
+		"_postman_id": "2e344d25-56a7-7f04-1611-7cd464ad99fd",
+		"description": "Draft of the Suggestion API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "{artist_name}",
+			"description": "Folder for {artist_name}",
+			"item": [
+				{
+					"name": "Valid Artists",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\").has(\"application/json\");",
+									"",
+									"var schema = {",
+									"    \"type\": \"object\",",
+									"    \"properties\": {",
+									"        \"artists\": {",
+									"            \"items\": {",
+									"                \"properties\": {",
+									"                    \"name\": {",
+									"                        \"type\": \"string\"",
+									"                    },",
+									"                    \"score\": {",
+									"                        \"type\": \"number\"",
+									"                    }",
+									"                },",
+									"                \"required\": [",
+									"                    \"score\",",
+									"                    \"name\"",
+									"                ],",
+									"                \"type\": \"object\"",
+									"            },",
+									"            \"type\": \"array\"",
+									"        }",
+									"    },",
+									"    \"required\": [",
+									"        \"artists\"",
+									"    ],",
+									"};",
+									"",
+									"",
+									"var jsonData = JSON.parse(JSON.parse(responseBody));",
+									"console.log(typeof(jsonData), jsonData);",
+									"",
+									"tests[\"Running JSON against schema\"] = tv4.validate(jsonData, schema);",
+									"console.log(\"Validation failed: \", tv4.error);",
+									"console.log(tv4.validateMultiple(jsonData, schema))"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"console.log(data.artist_name);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{url}}/v1/{{artist_name}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

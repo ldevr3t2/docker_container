@@ -1,0 +1,327 @@
+************* Module swagger_server.__main__
+C:  1, 0: Missing module docstring (missing-docstring)
+C:  8, 4: Invalid constant name "app" (invalid-name)
+************* Module swagger_server.encoder
+C:  1, 0: Missing module docstring (missing-docstring)
+C:  6, 0: Missing class docstring (missing-docstring)
+E:  9, 4: An attribute defined in json.encoder line 158 hides this method (method-hidden)
+************* Module swagger_server.map_getter
+C:  1, 0: Missing module docstring (missing-docstring)
+C: 28, 4: Missing method docstring (missing-docstring)
+C: 40, 4: Missing method docstring (missing-docstring)
+C: 48, 4: Missing method docstring (missing-docstring)
+W:  5, 0: Unused import json (unused-import)
+C:  5, 0: standard import "import json" comes before "import requests" (wrong-import-order)
+C:  6, 0: standard import "import re" comes before "import requests" (wrong-import-order)
+************* Module swagger_server.url_encoder
+C:  1, 0: Missing module docstring (missing-docstring)
+************* Module swagger_server.util
+C:  1, 0: Missing module docstring (missing-docstring)
+C: 26, 9: Using type() instead of isinstance() for a typecheck. (unidiomatic-typecheck)
+R:  6, 0: Too many return statements (8/6) (too-many-return-statements)
+E: 48,16: Undefined variable 'unicode' (undefined-variable)
+************* Module swagger_server.controllers.artist_suggestion_controller
+C:  1, 0: Missing module docstring (missing-docstring)
+C: 28, 8: Invalid variable name "a1" (invalid-name)
+C: 29, 8: Invalid variable name "a2" (invalid-name)
+W:  1, 0: Unused import connexion (unused-import)
+W:  3, 0: Unused import urllib (unused-import)
+W:  7, 0: Unused DefaultErrorResponse imported from swagger_server.models.default_error_response (unused-import)
+W:  8, 0: Unused date imported from datetime (unused-import)
+W:  8, 0: Unused datetime imported from datetime (unused-import)
+W:  9, 0: Unused List imported from typing (unused-import)
+W:  9, 0: Unused Dict imported from typing (unused-import)
+W: 10, 0: Unused iteritems imported from six (unused-import)
+W: 11, 0: Unused deserialize_date imported from util (unused-import)
+W: 11, 0: Unused deserialize_datetime imported from util (unused-import)
+C:  2, 0: standard import "import json" comes before "import connexion" (wrong-import-order)
+C:  3, 0: standard import "import urllib" comes before "import connexion" (wrong-import-order)
+C:  8, 0: standard import "from datetime import date, datetime" comes before "import connexion" (wrong-import-order)
+C:  9, 0: standard import "from typing import List, Dict" comes before "import connexion" (wrong-import-order)
+C: 13, 0: external import "from swagger_server.url_encoder import URLEncoder" comes before "from ..util import deserialize_date, deserialize_datetime" (wrong-import-order)
+C: 14, 0: external import "from swagger_server.map_getter import MapGetter" comes before "from ..util import deserialize_date, deserialize_datetime" (wrong-import-order)
+C: 13, 0: Imports from package swagger_server are not grouped (ungrouped-imports)
+************* Module swagger_server.models
+C:  1, 0: Missing module docstring (missing-docstring)
+************* Module swagger_server.models.artist
+C: 94, 0: Trailing newlines (trailing-newlines)
+C:  1, 0: Missing module docstring (missing-docstring)
+W:  5, 0: Unused date imported from datetime (unused-import)
+W:  5, 0: Unused datetime imported from datetime (unused-import)
+W:  6, 0: Unused List imported from typing (unused-import)
+W:  6, 0: Unused Dict imported from typing (unused-import)
+C:  5, 0: standard import "from datetime import date, datetime" comes before "from .base_model_ import Model" (wrong-import-order)
+C:  6, 0: standard import "from typing import List, Dict" comes before "from .base_model_ import Model" (wrong-import-order)
+************* Module swagger_server.models.artist_list
+C: 67, 0: Trailing newlines (trailing-newlines)
+C:  1, 0: Missing module docstring (missing-docstring)
+W:  6, 0: Unused date imported from datetime (unused-import)
+W:  6, 0: Unused datetime imported from datetime (unused-import)
+W:  7, 0: Unused Dict imported from typing (unused-import)
+C:  6, 0: standard import "from datetime import date, datetime" comes before "from swagger_server.models.artist import Artist" (wrong-import-order)
+C:  7, 0: standard import "from typing import List, Dict" comes before "from swagger_server.models.artist import Artist" (wrong-import-order)
+************* Module swagger_server.models.artist_not_found
+C: 98, 0: Trailing newlines (trailing-newlines)
+C:  1, 0: Missing module docstring (missing-docstring)
+W:  5, 0: Unused date imported from datetime (unused-import)
+W:  5, 0: Unused datetime imported from datetime (unused-import)
+W:  6, 0: Unused List imported from typing (unused-import)
+W:  6, 0: Unused Dict imported from typing (unused-import)
+C:  5, 0: standard import "from datetime import date, datetime" comes before "from .base_model_ import Model" (wrong-import-order)
+C:  6, 0: standard import "from typing import List, Dict" comes before "from .base_model_ import Model" (wrong-import-order)
+************* Module swagger_server.models.base_model_
+C: 75, 0: Final newline missing (missing-final-newline)
+C:  1, 0: Missing module docstring (missing-docstring)
+C:  9, 0: Missing class docstring (missing-docstring)
+************* Module swagger_server.models.default_error_response
+C: 66, 0: Trailing newlines (trailing-newlines)
+C:  1, 0: Missing module docstring (missing-docstring)
+W:  5, 0: Unused date imported from datetime (unused-import)
+W:  5, 0: Unused datetime imported from datetime (unused-import)
+W:  6, 0: Unused List imported from typing (unused-import)
+W:  6, 0: Unused Dict imported from typing (unused-import)
+C:  5, 0: standard import "from datetime import date, datetime" comes before "from .base_model_ import Model" (wrong-import-order)
+C:  6, 0: standard import "from typing import List, Dict" comes before "from .base_model_ import Model" (wrong-import-order)
+************* Module swagger_server.test
+C:  1, 0: Missing module docstring (missing-docstring)
+E:  1, 0: Unable to import 'flask_testing' (import-error)
+C:  7, 0: Missing class docstring (missing-docstring)
+C:  9, 4: Missing method docstring (missing-docstring)
+R:  9, 4: Method could be a function (no-self-use)
+R:  7, 0: Too few public methods (1/2) (too-few-public-methods)
+C:  3, 0: external import "import connexion" comes before "from ..encoder import JSONEncoder" (wrong-import-order)
+C:  4, 0: standard import "import logging" comes before "from flask_testing import TestCase" (wrong-import-order)
+************* Module swagger_server.test.test_artist_suggestion_controller
+C:  1, 0: Missing module docstring (missing-docstring)
+W:  5, 0: Unused ArtistList imported from swagger_server.models.artist_list (unused-import)
+W:  6, 0: Unused ArtistNotFound imported from swagger_server.models.artist_not_found (unused-import)
+W:  7, 0: Unused DefaultErrorResponse imported from swagger_server.models.default_error_response (unused-import)
+W:  9, 0: Unused BytesIO imported from six (unused-import)
+W: 10, 0: Unused json imported from flask (unused-import)
+C:  9, 0: external import "from six import BytesIO" comes before "from . import BaseTestCase" (wrong-import-order)
+C: 10, 0: external import "from flask import json" comes before "from . import BaseTestCase" (wrong-import-order)
+************* Module swagger_server.test.test_url_encoder
+C:  1, 0: Missing module docstring (missing-docstring)
+E:  4, 0: Unable to import 'url_encoder' (import-error)
+C:  7, 0: Missing class docstring (missing-docstring)
+C: 14, 4: Missing method docstring (missing-docstring)
+C: 21, 4: Missing method docstring (missing-docstring)
+C:  5, 0: standard import "import unittest" comes before "from url_encoder import URLEncoder" (wrong-import-order)
+R:  1, 0: Similar lines in 2 files
+==swagger_server.models.artist_not_found:75
+==swagger_server.models.default_error_response:43
+    @property
+    def message(self) -> str:
+        """
+        Gets the message of this DefaultErrorResponse.
+
+        :return: The message of this DefaultErrorResponse.
+        :rtype: str
+        """
+        return self._message
+
+    @message.setter
+    def message(self, message: str):
+        """
+        Sets the message of this DefaultErrorResponse.
+
+        :param message: The message of this DefaultErrorResponse.
+        :type message: str
+        """
+        if message is None:
+            raise ValueError("Invalid value for `message`, must not be `None`")
+
+        self._message = message
+ (duplicate-code)
+R:  1, 0: Similar lines in 3 files
+==swagger_server.models.artist:2
+==swagger_server.models.artist_not_found:2
+==swagger_server.models.default_error_response:2
+from __future__ import absolute_import
+from .base_model_ import Model
+from datetime import date, datetime
+from typing import List, Dict
+from ..util import deserialize_model
+
+ (duplicate-code)
+
+
+Report
+======
+315 statements analysed.
+
+Statistics by type
+------------------
+
++---------+-------+-----------+-----------+------------+---------+
+|type     |number |old number |difference |%documented |%badname |
++=========+=======+===========+===========+============+=========+
+|module   |17     |17         |=          |11.76       |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|class    |11     |11         |=          |63.64       |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|method   |38     |38         |=          |84.21       |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|function |9      |9          |=          |100.00      |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+
+
+
+External dependencies
+---------------------
+::
+
+    bs4 (swagger_server.map_getter)
+    connexion (swagger_server.test,swagger_server.controllers.artist_suggestion_controller,swagger_server.__main__)
+      \-decorators 
+        \-produces (swagger_server.encoder)
+    dateutil 
+      \-parser (swagger_server.util)
+    flask 
+      \-json (swagger_server.test.test_artist_suggestion_controller)
+    requests (swagger_server.map_getter)
+    six (swagger_server.test.test_artist_suggestion_controller,swagger_server.models.base_model_,swagger_server.encoder,swagger_server.controllers.artist_suggestion_controller,swagger_server.util)
+    swagger_server 
+      \-encoder (swagger_server.__main__)
+      \-map_getter (swagger_server.controllers.artist_suggestion_controller)
+      \-models 
+      | \-artist (swagger_server.controllers.artist_suggestion_controller,swagger_server.models.artist_list)
+      | \-artist_list (swagger_server.controllers.artist_suggestion_controller,swagger_server.test.test_artist_suggestion_controller)
+      | \-artist_not_found (swagger_server.controllers.artist_suggestion_controller,swagger_server.test.test_artist_suggestion_controller)
+      | \-base_model_ (swagger_server.models.artist,swagger_server.models.default_error_response,swagger_server.models.artist_list,swagger_server.encoder,swagger_server.models.artist_not_found)
+      | \-default_error_response (swagger_server.controllers.artist_suggestion_controller,swagger_server.test.test_artist_suggestion_controller)
+      \-test (swagger_server.test.test_artist_suggestion_controller)
+      \-url_encoder (swagger_server.controllers.artist_suggestion_controller)
+      \-util (swagger_server.models.artist,swagger_server.models.default_error_response,swagger_server.models.artist_list,swagger_server.models.base_model_,swagger_server.models.artist_not_found,swagger_server.controllers.artist_suggestion_controller)
+
+
+
+Raw metrics
+-----------
+
++----------+-------+------+---------+-----------+
+|type      |number |%     |previous |difference |
++==========+=======+======+=========+===========+
+|code      |398    |47.32 |398      |=          |
++----------+-------+------+---------+-----------+
+|docstring |301    |35.79 |301      |=          |
++----------+-------+------+---------+-----------+
+|comment   |24     |2.85  |24       |=          |
++----------+-------+------+---------+-----------+
+|empty     |118    |14.03 |118      |=          |
++----------+-------+------+---------+-----------+
+
+
+
+Duplication
+-----------
+
++-------------------------+------+---------+-----------+
+|                         |now   |previous |difference |
++=========================+======+=========+===========+
+|nb duplicated lines      |37    |37       |=          |
++-------------------------+------+---------+-----------+
+|percent duplicated lines |4.585 |4.585    |=          |
++-------------------------+------+---------+-----------+
+
+
+
+Messages by category
+--------------------
+
++-----------+-------+---------+-----------+
+|type       |number |previous |difference |
++===========+=======+=========+===========+
+|convention |56     |56       |=          |
++-----------+-------+---------+-----------+
+|refactor   |5      |5        |=          |
++-----------+-------+---------+-----------+
+|warning    |31     |31       |=          |
++-----------+-------+---------+-----------+
+|error      |4      |4        |=          |
++-----------+-------+---------+-----------+
+
+
+
+% errors / warnings by module
+-----------------------------
+
++--------------------------------------------------------+------+--------+---------+-----------+
+|module                                                  |error |warning |refactor |convention |
++========================================================+======+========+=========+===========+
+|swagger_server.test.test_url_encoder                    |25.00 |0.00    |40.00    |8.93       |
++--------------------------------------------------------+------+--------+---------+-----------+
+|swagger_server.test.__init__                            |25.00 |0.00    |40.00    |8.93       |
++--------------------------------------------------------+------+--------+---------+-----------+
+|swagger_server.util                                     |25.00 |0.00    |20.00    |3.57       |
++--------------------------------------------------------+------+--------+---------+-----------+
+|swagger_server.encoder                                  |25.00 |0.00    |0.00     |3.57       |
++--------------------------------------------------------+------+--------+---------+-----------+
+|swagger_server.controllers.artist_suggestion_controller |0.00  |32.26   |0.00     |17.86      |
++--------------------------------------------------------+------+--------+---------+-----------+
+|swagger_server.test.test_artist_suggestion_controller   |0.00  |16.13   |0.00     |5.36       |
++--------------------------------------------------------+------+--------+---------+-----------+
+|swagger_server.models.default_error_response            |0.00  |12.90   |0.00     |7.14       |
++--------------------------------------------------------+------+--------+---------+-----------+
+|swagger_server.models.artist_not_found                  |0.00  |12.90   |0.00     |7.14       |
++--------------------------------------------------------+------+--------+---------+-----------+
+|swagger_server.models.artist                            |0.00  |12.90   |0.00     |7.14       |
++--------------------------------------------------------+------+--------+---------+-----------+
+|swagger_server.models.artist_list                       |0.00  |9.68    |0.00     |7.14       |
++--------------------------------------------------------+------+--------+---------+-----------+
+|swagger_server.map_getter                               |0.00  |3.23    |0.00     |10.71      |
++--------------------------------------------------------+------+--------+---------+-----------+
+|swagger_server.models.base_model_                       |0.00  |0.00    |0.00     |5.36       |
++--------------------------------------------------------+------+--------+---------+-----------+
+|swagger_server.__main__                                 |0.00  |0.00    |0.00     |3.57       |
++--------------------------------------------------------+------+--------+---------+-----------+
+|swagger_server.url_encoder                              |0.00  |0.00    |0.00     |1.79       |
++--------------------------------------------------------+------+--------+---------+-----------+
+|swagger_server.models.__init__                          |0.00  |0.00    |0.00     |1.79       |
++--------------------------------------------------------+------+--------+---------+-----------+
+
+
+
+Messages
+--------
+
++---------------------------+------------+
+|message id                 |occurrences |
++===========================+============+
+|unused-import              |31          |
++---------------------------+------------+
+|missing-docstring          |25          |
++---------------------------+------------+
+|wrong-import-order         |21          |
++---------------------------+------------+
+|trailing-newlines          |4           |
++---------------------------+------------+
+|invalid-name               |3           |
++---------------------------+------------+
+|import-error               |2           |
++---------------------------+------------+
+|duplicate-code             |2           |
++---------------------------+------------+
+|unidiomatic-typecheck      |1           |
++---------------------------+------------+
+|ungrouped-imports          |1           |
++---------------------------+------------+
+|undefined-variable         |1           |
++---------------------------+------------+
+|too-many-return-statements |1           |
++---------------------------+------------+
+|too-few-public-methods     |1           |
++---------------------------+------------+
+|no-self-use                |1           |
++---------------------------+------------+
+|missing-final-newline      |1           |
++---------------------------+------------+
+|method-hidden              |1           |
++---------------------------+------------+
+
+
+
+Global evaluation
+-----------------
+Your code has been rated at 6.44/10 (previous run: 6.44/10, +0.00)
+
