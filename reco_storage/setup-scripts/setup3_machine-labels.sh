@@ -34,14 +34,3 @@ docker node update \
     --label-add replicanum=2 \
     worker3
 
-./build-images.sh
-
-
-eval $(docker-machine env worker1)
-./build-images.sh
-
-eval $(docker-machine env worker2)
-./build-images.sh
-
-eval $(docker-machine env worker3)
-./build-images.sh

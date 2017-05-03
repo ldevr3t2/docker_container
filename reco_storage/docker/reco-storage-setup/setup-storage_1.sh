@@ -24,6 +24,7 @@ mongo --host shard0-r0 --port 27018 --eval "rs.initiate(
   }
 )"
 
+# Determine primary shard and add arbiter - required to be done manually
 # mongo --host shard0-r0 --eval "rs.status()"
 # mongo --host <shard #0 primary host> --eval "rs.addArb('shard0-arb:27017')"
 
@@ -38,6 +39,7 @@ mongo --host shard1-r0 --port 27019 --eval "rs.initiate(
   }
 )"
 
+# Determine primary shard and add arbiter - required to be done manually
 # mongo --host shard0-r0 --eval "rs.status()"
 # mongo --host <shard #0 primary host> --eval "rs.addArb('shard0-arb:27017')"
 
@@ -52,22 +54,7 @@ mongo --host shard2-r0 --port 27020 --eval "rs.initiate(
   }
 )"
 
+# Determine primary shard and add arbiter - required to be done manually
 # mongo --host shard1-r0 --eval "rs.status()"
 # mongo --host <shard #0 primary host> --eval "rs.addArb('shard0-arb:27017')"
-
-mongo --host reco-storage-router \
-    --eval "sh.addShard('shard0set/shard0-r0:27018')"
-
-mongo --host reco-storage-router \
-    --eval "sh.addShard('shard1set/shard1-r0:27019')"
-
-mongo --host reco-storage-router \
-    --eval "sh.addShard('shard2set/shard2-r0:27020')"
-
-mongo --host reco-storage-router \
-    --eval "sh.enableSharding('artist_db')"
-
-mongo --host reco-storage-router \
-    --eval "sh.shardCollection('artist_db.artist_tree', { _id : 'hashed' })"
-
 
