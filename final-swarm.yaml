@@ -1,0 +1,386 @@
+version: '3'
+
+services:
+  # David's web app
+  webapp:
+    image: musica-webapp
+    ports:
+     - "80:80"
+    depends_on:
+      - suggest-server
+      - fingerprint
+    networks:
+      - mainnet
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+
+  # Randall's fingerprint service
+  fingerprint-server:
+    image: musica-fingerprint
+    networks:
+      - mainnet
+    deploy:
+      replicas: 1
+
+  
+  # Ilya's suggestion service
+  suggest-server:
+    image: musica-suggest
+    depends_on:
+      - reco-storage-web
+    networks:
+      - mainnet
+    deploy:
+      replicas: 1
+      
+  # api_testing:      
+  #   build: ./music_service/testing/newman
+  #   image: "music-suggest-testing"
+  #   links:
+  #     - suggest-server
+  #   networks:
+      # - mainnet
+  # END Ilya's suggestion containers
+
+
+  # Matt's storage service and machines
+
+  # Web server
+  reco-storage-web:
+    image: reco-storage-webserver
+    ports:
+      - "8080:8080"
+    depends_on:
+      - reco-storage-router
+    networks:
+      - mainnet
+    deploy:
+      replicas: 1
+
+  # MongoDB shard router
+  reco-storage-router:
+    image: reco-storage-mongodb
+    entrypoint:
+      - /home/mongos_start.sh
+      - mongos
+      - --configdb
+      - configset/config-r0:27017,config-r1:27017,config-r2:27017
+    depends_on:
+      - config-r0
+      - config-r1
+      - config-r2
+      - shard0-r0
+      - shard0-r1
+      - shard0-r2
+      - shard1-r0
+      - shard1-r1
+      - shard1-r2
+      - shard2-r0
+      - shard2-r1
+      - shard2-r2
+    networks:
+      - mainnet
+    deploy:
+      replicas: 1
+
+  # Config replica set
+  config-r0:
+    image: reco-storage-mongodb
+    volumes:
+      - cfr0:/data/db
+    entrypoint:
+      - mongod
+      - --port
+      - "27017"
+      - --configsvr
+      - --replSet
+      - "configset"
+      - --dbpath
+      - /data/db
+      - --smallfiles
+    networks:
+      - mainnet
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == worker
+          - node.labels.config == true
+          - node.labels.replicanum == 0
+
+  config-r1:
+    image: reco-storage-mongodb
+    volumes:
+      - cfr1:/data/db
+    entrypoint:
+      - mongod
+      - --port
+      - "27017"
+      - --configsvr
+      - --replSet
+      - "configset"
+      - --dbpath
+      - /data/db
+      - --smallfiles
+    networks:
+      - mainnet
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == worker
+          - node.labels.config == true
+          - node.labels.replicanum == 1
+
+  config-r2:
+    image: reco-storage-mongodb
+    volumes:
+      - cfr2:/data/db
+    entrypoint:
+      - mongod
+      - --port
+      - "27017"
+      - --configsvr
+      - --replSet
+      - "configset"
+      - --dbpath
+      - /data/db
+      - --smallfiles
+    networks:
+      - mainnet
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == worker
+          - node.labels.config == true
+          - node.labels.replicanum == 2
+  
+  # Shard 0 replica set
+  shard0-r0:
+    image: reco-storage-mongodb
+    volumes:
+      - s0r0:/data/db
+    entrypoint:
+      - mongod
+      - --port
+      - "27018"
+      - --shardsvr
+      - --replSet
+      - "shard0set"
+      - --dbpath
+      - /data/db
+      - --smallfiles
+    networks:
+      - mainnet
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == worker
+          - node.labels.shard0 == true
+          - node.labels.replicanum == 0
+
+  shard0-r1:
+    image: reco-storage-mongodb
+    volumes:
+      - s0r1:/data/db
+    entrypoint:
+      - mongod
+      - --port
+      - "27018"
+      - --shardsvr
+      - --replSet
+      - "shard0set"
+      - --dbpath
+      - /data/db
+      - --smallfiles
+    networks:
+      - mainnet
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == worker
+          - node.labels.shard0 == true
+          - node.labels.replicanum == 1
+
+  shard0-r2:
+    image: reco-storage-mongodb
+    volumes:
+      - s0r2:/data/db
+    entrypoint:
+      - mongod
+      - --port
+      - "27018"
+      - --shardsvr
+      - --replSet
+      - "shard0set"
+      - --dbpath
+      - /data/db
+      - --smallfiles
+    networks:
+      - mainnet
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == worker
+          - node.labels.shard0 == true
+          - node.labels.replicanum == 2
+
+  # Shard 1 replica set
+  shard1-r0:
+    image: reco-storage-mongodb
+    volumes:
+      - s1r0:/data/db
+    entrypoint:
+      - mongod
+      - --port
+      - "27019"
+      - --shardsvr
+      - --replSet
+      - "shard1set"
+      - --dbpath
+      - /data/db
+      - --smallfiles
+    networks:
+      - mainnet
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == worker
+          - node.labels.shard1 == true
+          - node.labels.replicanum == 0
+
+  shard1-r1:
+    image: reco-storage-mongodb
+    volumes:
+      - s1r1:/data/db
+    entrypoint:
+      - mongod
+      - --port
+      - "27019"
+      - --shardsvr
+      - --replSet
+      - "shard1set"
+      - --dbpath
+      - /data/db
+      - --smallfiles
+    networks:
+      - mainnet
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == worker
+          - node.labels.shard1 == true
+          - node.labels.replicanum == 1
+
+  shard1-r2:
+    image: reco-storage-mongodb
+    volumes:
+      - s1r2:/data/db
+    entrypoint:
+      - mongod
+      - --port
+      - "27019"
+      - --shardsvr
+      - --replSet
+      - "shard1set"
+      - --dbpath
+      - /data/db
+      - --smallfiles
+    networks:
+      - mainnet
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == worker
+          - node.labels.shard1 == true
+          - node.labels.replicanum == 2
+
+  # Shard 2 replica set
+  shard2-r0:
+    image: reco-storage-mongodb
+    volumes:
+      - s2r0:/data/db
+    entrypoint:
+      - mongod
+      - --port
+      - "27020"
+      - --shardsvr
+      - --replSet
+      - "shard2set"
+      - --dbpath
+      - /data/db
+      - --smallfiles
+    networks:
+      - mainnet
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == worker
+          - node.labels.shard2 == true
+          - node.labels.replicanum == 0
+
+  shard2-r1:
+    image: reco-storage-mongodb
+    volumes:
+      - s2r1:/data/db
+    entrypoint:
+      - mongod
+      - --port
+      - "27020"
+      - --shardsvr
+      - --replSet
+      - "shard2set"
+      - --dbpath
+      - /data/db
+      - --smallfiles
+    networks:
+      - mainnet
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == worker
+          - node.labels.shard2 == true
+          - node.labels.replicanum == 1
+
+  shard2-r2:
+    image: reco-storage-mongodb
+    volumes:
+      - s2r2:/data/db
+    entrypoint:
+      - mongod
+      - --port
+      - "27020"
+      - --shardsvr
+      - --replSet
+      - "shard2set"
+      - --dbpath
+      - /data/db
+      - --smallfiles
+    networks:
+      - mainnet
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == worker
+          - node.labels.shard2 == true
+          - node.labels.replicanum == 2
+  # END Matt's storage containers
+volumes:
+  db-data:
+
+networks:
+  mainnet:
+    external: true

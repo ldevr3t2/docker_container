@@ -18,7 +18,7 @@ class MapGetter():
     """
     __base_url = 'https://www.music-map.com/'
     __artist_pat = re.compile(r'Aid\[0\]=new Array\((.*?)\)')
-    __storage_url = 'http://ec2-52-90-151-97.compute-1.amazonaws.com:8080/v1/artist='
+    __storage_url = 'http://reco-storage-web:8080/v1/artist='
 
     def __init__(self):
         """
