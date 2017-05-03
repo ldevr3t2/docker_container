@@ -25,7 +25,7 @@ services:
   
   # ilya's containers
   suggest-server:
-      build: ./music_suggest
+      build: ./music_service
       command: python3 -m swagger_server --host 0.0.0.0
       expose:
         - 8080
@@ -42,7 +42,7 @@ services:
             - suggest-server
 
   api_testing:      
-    build: ./music_suggest/testing/newman
+    build: ./music_service/testing/newman
     image: "music-suggest-testing"
     links:
       - suggest-server
