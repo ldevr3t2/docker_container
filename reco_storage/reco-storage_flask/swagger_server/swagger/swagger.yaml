@@ -1,0 +1,187 @@
+---
+swagger: "2.0"
+info:
+  description: "Draft of the Suggestion Storage API"
+  version: "1.0.0"
+  title: "Music Suggestion Storage API"
+basePath: "/v1"
+schemes:
+- "http"
+- "https"
+paths:
+  /artist={artist_name}:
+    get:
+      tags:
+      - "Artist_Suggestion_Storage"
+      summary: "Get stored similar artists list"
+      operationId: "get_artist"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "artist_name"
+        in: "path"
+        description: "Requested artist"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Requested similar artists list"
+          schema:
+            $ref: "#/definitions/artistList"
+        404:
+          description: "Artist not found"
+          schema:
+            $ref: "#/definitions/artistNotFound"
+        502:
+          description: "Bad gateway - part of the service is down"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/defaultErrorResponse"
+      x-swagger-router-controller: "swagger_server.controllers.artist_suggestion_storage_controller"
+    post:
+      tags:
+      - "Artist_Suggestion_Storage"
+      summary: "Add artist to database"
+      operationId: "add_artist"
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "artist_name"
+        in: "path"
+        description: "Artist to add"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "artist_conn"
+        description: "Added artist's connections"
+        required: false
+        schema:
+          $ref: "#/definitions/artistList"
+      responses:
+        200:
+          description: "Successful add"
+        303:
+          description: "Artist already in database; use PUT"
+        400:
+          description: "Invalid JSON syntax"
+          schema:
+            $ref: "#/definitions/invalidSyntax"
+        502:
+          description: "Bad gateway - part of the service is down"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/defaultErrorResponse"
+      x-swagger-router-controller: "swagger_server.controllers.artist_suggestion_storage_controller"
+    put:
+      tags:
+      - "Artist_Suggestion_Storage"
+      summary: "Update artist in database"
+      operationId: "update_artist"
+      consumes:
+      - "application/json"
+      parameters:
+      - name: "artist_name"
+        in: "path"
+        description: "Artist to add"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "artist_conn"
+        description: "Updated artist's connections"
+        required: true
+        schema:
+          $ref: "#/definitions/artistList"
+      responses:
+        200:
+          description: "Successful update"
+        400:
+          description: "Invalid JSON syntax"
+          schema:
+            $ref: "#/definitions/invalidSyntax"
+        404:
+          description: "Artist not found"
+          schema:
+            $ref: "#/definitions/artistNotFound"
+        502:
+          description: "Bad gateway - part of the service is down"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/defaultErrorResponse"
+      x-swagger-router-controller: "swagger_server.controllers.artist_suggestion_storage_controller"
+    delete:
+      tags:
+      - "Artist_Suggestion_Storage"
+      summary: "Delete artist from database"
+      operationId: "delete_artist"
+      parameters:
+      - name: "artist_name"
+        in: "path"
+        description: "Artist to delete"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successful delete"
+        404:
+          description: "Artist not found"
+          schema:
+            $ref: "#/definitions/artistNotFound"
+        502:
+          description: "Bad gateway - part of the service is down"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/defaultErrorResponse"
+      x-swagger-router-controller: "swagger_server.controllers.artist_suggestion_storage_controller"
+definitions:
+  artist:
+    required:
+    - "name"
+    - "score"
+    properties:
+      name:
+        type: "string"
+      score:
+        type: "number"
+        format: "float"
+  artistList:
+    required:
+    - "artists"
+    properties:
+      artists:
+        type: "array"
+        items:
+          $ref: "#/definitions/artist"
+  artistNotFound:
+    required:
+    - "code"
+    - "message"
+    properties:
+      code:
+        type: "string"
+        enum:
+        - "artist_name"
+      message:
+        type: "string"
+    description: "Error when artist not found"
+  invalidSyntax:
+    required:
+    - "code"
+    - "message"
+    properties:
+      code:
+        type: "string"
+        enum:
+        - "invalid_JSON"
+      message:
+        type: "string"
+    description: "Error when invalid JSON detected"
+  defaultErrorResponse:
+    required:
+    - "message"
+    properties:
+      message:
+        type: "string"
