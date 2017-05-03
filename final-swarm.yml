@@ -378,9 +378,21 @@ services:
           - node.labels.shard2 == true
           - node.labels.replicanum == 2
   # END Matt's storage containers
-volumes:
-  db-data:
 
 networks:
   mainnet:
     external: true
+
+volumes:
+  cfr0:
+  cfr1:
+  cfr2:
+  s0r0:
+  s0r1:
+  s0r2:
+  s1r0:
+  s1r1:
+  s1r2:
+  s2r0:
+  s2r1:
+  s2r2:
