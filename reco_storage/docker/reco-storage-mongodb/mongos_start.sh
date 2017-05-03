@@ -1,4 +1,4 @@
 #!/bin/bash
 
-sleep 10 && \
-eval "$@"
+sleep 20
+eval $@

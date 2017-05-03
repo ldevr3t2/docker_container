@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# sleep 10
+
 # Initialize config replica set
 mongo --host config-r0 --port 27017 --eval "rs.initiate(
     {

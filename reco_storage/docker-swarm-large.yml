@@ -1,22 +1,15 @@
-# Full system for implementing sharded MongoDB storage
+# Large (ideal) system for implementing sharded MongoDB storage
 # - Config DB is a replica set with 3 replicas
 # - 3 shards
 #   -> Each shard is a replica set with 3 replicas
 
+# version: '3.2'
 version: '3'
 
 services:
-  # mongo-setup:
-  #   image: reco-storage-setup
-  #   deploy:
-  #     replicas: 1
-  #     placement:
-  #       constraints:
-  #         - node.role == manager
-
   # Web server
   reco-storage-web:
-    image: reco-storage-webapp
+    image: reco-storage-webserver
     ports:
       - "8080:8080"
     depends_on:
@@ -352,3 +345,4 @@ volumes:
 networks:
   mainnet:
     external: true
+    # attachable: true
