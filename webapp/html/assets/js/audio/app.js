@@ -163,6 +163,7 @@ $(document).ready(function(){
     } else {
       function upload(base64){
         var formData = new FormData();
+        base64 = base64.slice( base64.indexOf("base64,") + 7)
         formData.append('music_buffer', base64);
 
         var url = musicURL;

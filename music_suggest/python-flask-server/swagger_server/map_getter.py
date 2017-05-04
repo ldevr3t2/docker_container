@@ -57,11 +57,12 @@ class MapGetter():
         soup = BeautifulSoup(request.text, 'lxml')
         artist_names = self.get_artists_from_soup(soup)
         artist_scores = self.get_scores_from_soup(soup, self.__artist_pat)
-        return list(zip(artist_names, artist_scores))
+        return dict(artists=[dict(name=n, score=s)
+                                for n, s in zip(artist_names, artist_scores)])
 
     def __post_data_to_storage(self, artist_url, data):
         try:
-            request = requests.post(self.__storage_url+artist_url, json=self.artists_json(data), timeout=1)
+            request = requests.post(self.__storage_url+artist_url, json=data, timeout=1)
             print('Posting to storage')
             print(request.status_code)
             print(request.text)

@@ -1,6 +1,6 @@
 FROM kyma/docker-nginx
 COPY ./html /var/www
 
-COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY default-site.conf /etc/nginx/sites-enabled/default
 
 CMD 'nginx'

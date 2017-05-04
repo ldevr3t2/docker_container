@@ -49,10 +49,12 @@ $(document).ready(function() {
 
 			$.ajax({
 	           type: "GET",
-	           crossDomain: false,
-	           headers: { 'Accept': 'application/json' },
+	           crossDomain: true,
+	           async: false,
+	           dataType: "json",
+	           headers: {'Accept-Encoding' : "json"},
 	           url: url,
-	           data: $("#idForm").serialize(), // serializes the form's elements.
+	           // data: $("#idForm").serialize(), // serializes the form's elements.
 	           success: function(result)
 	           {
 	           		//filter out the best response
