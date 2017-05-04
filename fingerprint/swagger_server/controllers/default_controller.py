@@ -28,6 +28,8 @@ def audio_check(file_buffer):
         if connexion.request.is_json:
             input_JSON = connexion.request.get_json()
             file_buffer = input_JSON['music_buf']
+        else:
+            raise ValueError
     except:
         return "Bad Request", 400
 
