@@ -82,9 +82,9 @@ def fingerprint_get(music_buffer):
             input_JSON = connexion.request.get_json()
             music_buffer = input_JSON['music_buf']
         else:
-            raise ValueError
-    except:
-        return "Bad Request", 400
+            raise ValueError('Created error')
+    except Exception as e:
+        return str(e), 400
     try:
         answer = audio_check(base64.b64decode(music_buffer.encode()))
         return answer
