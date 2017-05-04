@@ -84,7 +84,7 @@ def fingerprint_get(music_buffer):
         else:
             raise ValueError('Created error')
     except Exception as e:
-        return str(e), 400
+        return input_JSON, 400
     try:
         answer = audio_check(base64.b64decode(music_buffer.encode()))
         return answer
