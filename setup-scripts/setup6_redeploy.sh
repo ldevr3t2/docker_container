@@ -2,7 +2,7 @@
 
 eval $(docker-machine env manager)
 docker stack rm finalT3
-docker volume prune
+# docker volume prune
 
 git pull
 

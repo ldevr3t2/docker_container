@@ -168,8 +168,9 @@ $(document).ready(function(){
         var url = musicURL;
         $.ajax({
           url: url,
-          type: 'POST',
-          crossDomain: true, //for local testing
+          type: 'GET',
+          //crossDomain: true, //for local testing
+          crossDomain: false,
           data: formData,
           contentType: false,
           processData: false,
