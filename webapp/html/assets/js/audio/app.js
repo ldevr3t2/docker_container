@@ -162,19 +162,19 @@ $(document).ready(function(){
       $("#match").html("No Results Found.");
     } else {
       function upload(base64){
-        var formData = new FormData();
+        // var formData = new FormData();
         base64 = base64.slice( base64.indexOf("base64,") + 7)
-        formData.append('music_buffer', base64);
+        // formData.append('music_buffer', base64);
 
-        var url = musicURL;
+        var url = musicURL + "?music_buffer=" + base64;
         $.ajax({
           url: url,
           type: 'GET',
           //crossDomain: true, //for local testing
           crossDomain: false,
-          data: formData,
-          contentType: false,
-          processData: false,
+          // data: formData,
+          // contentType: false,
+          // processData: false,
           success: function(result) {
             $("#match").css("display", "block");
             $("#match").html("Your Match: " + result.title + " by " + result.artists[0].artist);
