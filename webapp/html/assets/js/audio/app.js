@@ -180,7 +180,7 @@ $(document).ready(function(){
           data: JSON.stringify(data_JSON),
           success: function(result) {
             $("#match").css("display", "block");
-            $("#match").html("Your Match: " + result.title + " by " + result.artists[0].artist);
+            $("#match").html("Your Match: " + result.title + " by " + result.artists[0].name);
           },
           error: function() {
             $("#match").css("display", "block");
