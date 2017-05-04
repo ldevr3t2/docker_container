@@ -15,7 +15,7 @@ produces:
 - "application/json"
 paths:
   /fingerprint:
-    get:
+    post:
       description: "Returns info on the problem"
       operationId: "fingerprint_get"
       parameters:
