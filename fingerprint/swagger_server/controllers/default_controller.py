@@ -80,7 +80,7 @@ def fingerprint_get(music_buffer):
     try:
         if connexion.request.is_json:
             input_JSON = connexion.request.get_json()
-            music_buffer = input_JSON['music_buf']
+            music_buffer = input_JSON['music_buffer']
         else:
             raise ValueError('Created error')
     except Exception as e:

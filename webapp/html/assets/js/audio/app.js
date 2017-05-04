@@ -165,7 +165,7 @@ $(document).ready(function(){
         // var formData = new FormData();
         base64 = base64.slice( base64.indexOf("base64,") + 7)
         // formData.append('music_buffer', base64);
-        var data_JSON = { "music_buf" : base64 }
+        var data_JSON = { "music_buffer" : base64 }
 
         var url = musicURL;
         $.ajax({
