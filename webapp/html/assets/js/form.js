@@ -49,7 +49,8 @@ $(document).ready(function() {
 
 			$.ajax({
 	           type: "GET",
-	           crossDomain: true,
+	           crossDomain: false,
+	           headers: { 'Accept': 'application/json' },
 	           url: url,
 	           data: $("#idForm").serialize(), // serializes the form's elements.
 	           success: function(result)

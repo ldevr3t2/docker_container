@@ -42,7 +42,7 @@ class MapGetter():
             artist_list = cls.__get_from_music_map(cls, artist_url)
             cls.__post_data_to_storage(cls, artist_url, artist_list)
             return artist_list
-        return request.text
+        return request.json()
 
     def __get_from_music_map(self, artist_url):
         try:

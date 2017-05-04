@@ -27,11 +27,12 @@ def get_suggestion(artist_name):
     if temp == 'test':
         a1 = Artist('test artist1', -1)
         a2 = Artist('test artist2', 1.45)
-        return json.dumps(ArtistList([a1, a2]).to_dict())
+        return ArtistList([a1, a2])
     else:
         music_map = MapGetter()
         artist_score_list = music_map.retrieve_artist_by_url(temp)
         if not artist_score_list:
-            return json.dumps(ArtistNotFound('304', 'Artist '+artist_name+' not found').to_dict())
-        return json.dumps(ArtistList([Artist(name, score)
-                                      for name, score in artist_score_list]).to_dict())
+            return ArtistNotFound('404', 'Artist '+artist_name+' not found')
+        
+        return ArtistList([Artist(entry['name'], entry['score'])
+                          for entry in artist_score_list['artists']])
