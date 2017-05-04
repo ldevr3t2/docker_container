@@ -6,6 +6,8 @@ docker stack rm finalT3
 
 git pull
 
+./setup-scripts/setup4_machine-builds.sh
+
 # eval $(docker-machine env worker1)
 # docker volume prune
 
