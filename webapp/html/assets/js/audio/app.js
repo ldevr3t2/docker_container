@@ -171,6 +171,7 @@ $(document).ready(function(){
         $.ajax({
           url: url,
           type: 'POST',
+          dataType: "json",
           //crossDomain: true, //for local testing
           // crossDomain: false,
           // contentType: false,
