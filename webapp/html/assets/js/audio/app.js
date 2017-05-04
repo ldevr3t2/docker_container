@@ -176,7 +176,7 @@ $(document).ready(function(){
           // contentType: false,
           // processData: false,
           // data: formData,
-          data: data_JSON,
+          data: JSON.stringify(data_JSON),
           success: function(result) {
             $("#match").css("display", "block");
             $("#match").html("Your Match: " + result.title + " by " + result.artists[0].artist);
