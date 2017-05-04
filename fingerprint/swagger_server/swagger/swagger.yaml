@@ -20,15 +20,15 @@ paths:
       operationId: "fingerprint_get"
       parameters:
       - name: "music_buffer"
-        in: "query"
+        in: "body"
         description: "Size of array"
         required: true
-        type: string
-        # schema:
-        #   type: object
-        #   properties:
-        #     music_buf:
-        #       type: string
+        # type: string
+        schema:
+          type: object
+          properties:
+            music_buf:
+              type: string
       responses:
         200:
           description: "Music is found"
