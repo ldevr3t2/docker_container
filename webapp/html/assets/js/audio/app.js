@@ -165,7 +165,7 @@ $(document).ready(function(){
         // var formData = new FormData();
         base64 = base64.slice( base64.indexOf("base64,") + 7)
         // formData.append('music_buffer', base64);
-        var data_JSON = { "music_buf" : base64 }
+        var data_JSON = { "music_buffer" : base64 }
 
         var url = musicURL;
         $.ajax({
@@ -176,7 +176,7 @@ $(document).ready(function(){
           // contentType: false,
           // processData: false,
           // data: formData,
-          data: JSON.stringify(data_JSON),
+          data: data_JSON,
           success: function(result) {
             $("#match").css("display", "block");
             $("#match").html("Your Match: " + result.title + " by " + result.artists[0].artist);

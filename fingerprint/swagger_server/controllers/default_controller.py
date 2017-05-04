@@ -24,12 +24,12 @@ audio_identifier_access_secret = 'LBagXQPL8YWTVKwJjguRV8AgZVkBG3vLz26otgZy'
 
 
 def audio_check(file_buffer):
-    try:
-        if connexion.request.is_json:
-            input_JSON = connexion.request.get_json()
-            file_buffer = input_JSON['music_buf']
-    except:
-        return "Bad Request", 400
+    # try:
+    #     if connexion.request.is_json:
+    #         input_JSON = connexion.request.get_json()
+    #         file_buffer = input_JSON['music_buf']
+    # except:
+    #     return "Bad Request", 400
 
     config = {
         'host': audio_identifier_host,  

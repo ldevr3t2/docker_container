@@ -23,11 +23,12 @@ paths:
         in: "body"
         description: "Size of array"
         required: true
-        schema:
-          type: object
-          properties:
-            music_buf:
-              type: string
+        type: string
+        # schema:
+        #   type: object
+        #   properties:
+        #     music_buf:
+        #       type: string
       responses:
         200:
           description: "Music is found"
