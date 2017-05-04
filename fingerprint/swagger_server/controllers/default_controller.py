@@ -44,7 +44,6 @@ def audio_check(file_buffer):
         metadata =res_dict["metadata"]
         metadata_music_list = metadata["music"]
         check_answer = {}
-        answer = []
         for i in range (0, len(metadata_music_list)):
             title = metadata_music_list[i]["title"]
             artists = metadata_music_list[i]["artists"] 
@@ -56,16 +55,14 @@ def audio_check(file_buffer):
                         sort_keys=True).encode()).hexdigest()
             if check_answer.get(hashed_val) == None:
                 check_answer[hashed_val] = i
-                answer.append(song)
+                answer = song
         return answer
     else:
         status_msg = res_dict["status"]["msg"]
-        answer = [] 
         err = {
             'error': status_msg
         }
-        answer.append(err)
-        return answer
+        return err
 
 def fingerprint_get(music_buffer):
     """
