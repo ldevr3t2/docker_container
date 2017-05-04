@@ -24,15 +24,6 @@ audio_identifier_access_secret = 'LBagXQPL8YWTVKwJjguRV8AgZVkBG3vLz26otgZy'
 
 
 def audio_check(file_buffer):
-    try:
-        if connexion.request.is_json:
-            input_JSON = connexion.request.get_json()
-            file_buffer = input_JSON['music_buf']
-        else:
-            raise ValueError
-    except:
-        return "Bad Request", 400
-
     config = {
         'host': audio_identifier_host,  
         'access_key': audio_identifier_access_key,
@@ -86,6 +77,14 @@ def fingerprint_get(music_buffer):
     :rtype: List[Info]
     """
     #to_byte = music_buffer.encode()
+    try:
+        if connexion.request.is_json:
+            input_JSON = connexion.request.get_json()
+            music_buffer = input_JSON['music_buf']
+        else:
+            raise ValueError
+    except:
+        return "Bad Request", 400
     try:
         answer = audio_check(base64.b64decode(music_buffer.encode()))
         return answer
