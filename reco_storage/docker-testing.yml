@@ -4,7 +4,7 @@ services:
   reco-storage-web:
     image: musica-storage-webserver
     ports:
-      - "8080:8080"
+      - "8070:8080"
     networks:
       default:
         aliases:
