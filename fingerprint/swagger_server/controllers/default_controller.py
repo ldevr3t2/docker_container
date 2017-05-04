@@ -89,8 +89,9 @@ def fingerprint_get(music_buffer):
     try:
         answer = audio_check(base64.b64decode(music_buffer.encode()))
         return answer
-    except:
-        status_msg = "bad data type"
+    except Exception as e:
+        # status_msg = "bad data type"
+        status_msg = str(e)
         err = {
             'error': status_msg
         }
