@@ -20,7 +20,7 @@ paths:
       operationId: "fingerprint_get"
       parameters:
       - name: "music_buffer"
-        in: "data"
+        in: "body"
         description: "Size of array"
         required: true
         schema:
