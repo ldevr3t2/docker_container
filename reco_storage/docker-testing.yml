@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  reco-storage-web:
+    image: musica-storage-webserver
+    ports:
+      - "8080:8080"
+    networks:
+      default:
+        aliases:
+          - reco-storage
+    depends_on:
+      - reco-storage-router
+
+  reco-storage-router:
+    image: musica-storage-mongodb
+    networks:
+      default:
+    entrypoint:
+      - mongod
+      - --port
+      - "27017"
+      - --dbpath
+      - /data/db
+      - --smallfiles
+
+  reco-storage-testing:
+    image: reco-storage-test
+    build: ./docker/reco-storage-test
+    networks:
+      default:
+    depends_on:
+      - "reco-storage-web"

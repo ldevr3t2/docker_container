@@ -1,0 +1,384 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Music Suggestion Storage API",
+		"_postman_id": "c978bfa7-61ef-aaa0-1471-0c00a82b9827",
+		"description": "Draft of the Suggestion Storage API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "{artist_name}",
+			"description": "Folder for {artist_name}",
+			"item": [
+				{
+					"name": "GET - Invalid artist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"var schema = {",
+									"  \"required\" : [ \"code\", \"message\" ],",
+									"  \"properties\" : {",
+									"        \"code\" : {",
+									"            \"type\" : \"string\",",
+									"            \"enum\" : [ \"artist_name\" ]",
+									"        },",
+									"        \"message\" : {",
+									"            \"type\" : \"string\"",
+									"        }",
+									"    }",
+									"};",
+									"",
+									"tests[\"Status code is 404\"] = responseCode.code === 404;",
+									"tests[\"Valid Format\"] = tv4.validate(jsonData, schema);",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://{{hostname}}:{{port}}/v1/test_artist",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Invalid artist list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://{{hostname}}:{{port}}/v1/test_artist",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t\t\"name\":\"test_artist_child1\",\n\t\t\"score\":6.1,\n\t\t\"valid\":\"not at all\"\n\t},\n\t{\n\t\t\"name\":\"test_artist_child2\"\n\t\t\"score\":5.2\n\t},\n\t{\n\t\t\"name\":\"test_artist_child3\",\n\t\t\"score\":4.3\n\t},\n\t{\n\t\t\"name\":\"test_artist_child4\",\n\t\t\"score\":3.4\n\t}\n\t{\n\t\t\"name\":\"test_artist_child5\",\n\t\t\"score\":2.5\n\t}\n]"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Valid artist list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://{{hostname}}:{{port}}/v1/test_artist",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t\t\"name\":\"test_artist_child1\",\n\t\t\"score\":6.1\n\t},\n\t{\n\t\t\"name\":\"test_artist_child2\",\n\t\t\"score\":5.2\n\t},\n\t{\n\t\t\"name\":\"test_artist_child3\",\n\t\t\"score\":4.3\n\t},\n\t{\n\t\t\"name\":\"test_artist_child4\",\n\t\t\"score\":3.4\n\t},\n\t{\n\t\t\"name\":\"test_artist_child5\",\n\t\t\"score\":2.5\n\t}\n]"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Create existing (invalid)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 303\"] = responseCode.code === 303;",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://{{hostname}}:{{port}}/v1/test_artist",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t\t\"name\":\"test_artist_child1\",\n\t\t\"score\":6.1\n\t},\n\t{\n\t\t\"name\":\"test_artist_child2\",\n\t\t\"score\":5.2\n\t},\n\t{\n\t\t\"name\":\"test_artist_child3\",\n\t\t\"score\":4.3\n\t},\n\t{\n\t\t\"name\":\"test_artist_child4\",\n\t\t\"score\":3.4\n\t},\n\t{\n\t\t\"name\":\"test_artist_child5\",\n\t\t\"score\":2.5\n\t}\n]"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET - valid artist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"var schema = {",
+									"  \"required\" : [ \"name\", \"score\" ],",
+									"  \"properties\" : {",
+									"    \"name\" : {",
+									"      \"type\" : \"string\"",
+									"    },",
+									"    \"score\" : {",
+									"      \"type\" : \"number\",",
+									"      \"format\" : \"float\"",
+									"    }",
+									"  }",
+									"};",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"tests[\"Valid Format\"] = tv4.validate(jsonData, schema);",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://{{hostname}}:{{port}}/v1/test_artist",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://{{hostname}}:{{port}}/v1/test_artist",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t\t\"name\":\"test_artist_child1_update\",\n\t\t\"score\":16.17\n\t},\n\t{\n\t\t\"name\":\"test_artist_child2_update\",\n\t\t\"score\":15.27\n\t},\n\t{\n\t\t\"name\":\"test_artist_child3_update\",\n\t\t\"score\":14.37\n\t},\n\t{\n\t\t\"name\":\"test_artist_child4_update\",\n\t\t\"score\":13.47\n\t},\n\t{\n\t\t\"name\":\"test_artist_child5_update\",\n\t\t\"score\":12.57\n\t}\n]"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET - valid updated artist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"var schema = {",
+									"  \"required\" : [ \"name\", \"score\" ],",
+									"  \"properties\" : {",
+									"    \"name\" : {",
+									"      \"type\" : \"string\"",
+									"    },",
+									"    \"score\" : {",
+									"      \"type\" : \"number\",",
+									"      \"format\" : \"float\"",
+									"    }",
+									"  }",
+									"};",
+									"",
+									"tests[\"Valid Format\"] = tv4.validate(jsonData, schema);",
+									"console.log(\"Validation failed: \", tv4.error);",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://{{hostname}}:{{port}}/v1/test_artist",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - Invalid body",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://{{hostname}}:{{port}}/v1/test_artist",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t\t\"name\":\"test_artist_child1\",\n\t\t\"score\":6.1,\n\t\t\"valid\":\"not at all\"\n\t},\n\t{\n\t\t\"name\":\"test_artist_child2\"\n\t\t\"score\":5.2\n\t},\n\t{\n\t\t\"name\":\"test_artist_child3\",\n\t\t\"score\":4.3\n\t},\n\t{\n\t\t\"name\":\"test_artist_child4\",\n\t\t\"score\":3.4\n\t}\n\t{\n\t\t\"name\":\"test_artist_child5\",\n\t\t\"score\":2.5\n\t}\n]"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Valid artist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://{{hostname}}:{{port}}/v1/test_artist",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - Invalid artist",
+					"request": {
+						"url": "https://{{hostname}}:{{port}}/v1/test_artist",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Updated artist's connections"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Invalid artist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 404\"] = responseCode.code === 404;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://{{hostname}}:{{port}}/v1/test_artist",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

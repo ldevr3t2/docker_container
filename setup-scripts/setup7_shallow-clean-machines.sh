@@ -1,3 +1,5 @@
+#!/bin/bash
+
 eval $(docker-machine env manager)
 docker rmi -f $(docker images -f dangling=true -q)
 

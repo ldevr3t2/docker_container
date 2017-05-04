@@ -1,3 +1,5 @@
+#!/bin/bash
+
 eval $(docker-machine env worker1)
 docker rmi -f $(docker images -q)
 docker volume prune -f
