@@ -42,7 +42,7 @@ def add_artist(artist_name, artist_conn=None):
             raise ValueError()
 
     except ValueError as e:
-        return InvalidSyntax('400', 'invalid_JSON'), 400
+        return InvalidSyntax('invalid_JSON', 'Invalid JSON object'), 400
 
     db_data = artist_conn.to_dict()
     db_data['_id'] = artist_name
@@ -50,9 +50,9 @@ def add_artist(artist_name, artist_conn=None):
     try:
         collec.insert_one(db_data)
     except DuplicateKeyError as e:
-        return 303
+        return "Artist exists; use POST", 303
 
-    return 200
+    return 'Success', 200
 
 
 def delete_artist(artist_name):
@@ -67,9 +67,10 @@ def delete_artist(artist_name):
     del_count = collec.delete_one({'_id': artist_name}).deleted_count
 
     if del_count:
-        return 200
+        return 'Success', 200
     else:
-        return ArtistNotFound('404', 'artist_name'), 404
+        return ArtistNotFound('artist_name',
+            'Unable to delete; this artist is not in the database'), 404
 
 
 def get_artist(artist_name):
@@ -85,7 +86,8 @@ def get_artist(artist_name):
     if result:
         return ArtistList.from_dict(result)
     else:
-        return ArtistNotFound('404', 'artist_name'), 404
+        return ArtistNotFound('artist_name',
+            'Unable to retrieve; this artist is not in the database'), 404
 
 
 
@@ -107,14 +109,15 @@ def update_artist(artist_name, artist_conn):
         else:
             raise ValueError()
     except ValueError:
-        return InvalidSyntax('400', 'invalid_JSON'), 400
+        return InvalidSyntax('invalid_JSON', 'Invalid JSON object'), 400
 
 
     upd_count = collec.replace_one({'_id': artist_name},
                                     artist_conn.to_dict()).matched_count
 
     if upd_count:
-        return 200
+        return 'Success', 200
     else:
-        return ArtistNotFound('404', 'artist_name'), 404
+        return ArtistNotFound('artist_name',
+            'Unable to update; this artist is not in the database'), 404
 
