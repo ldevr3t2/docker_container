@@ -150,16 +150,16 @@ Run tests: `$ docker-compose -f ./music_suggest/docker-compose.yaml up`
 ## Storage Service ##
 
 Build:
-`$ docker build -t musica-storage-mongodb ./reco_storage/docker/reco-storage-mongodb && \
-docker build -t musica-storage-setup ./reco_storage/docker/reco-storage-setup && \
+`$ docker build -t musica-storage-mongodb ./reco_storage/docker/reco-storage-mongodb && 
+docker build -t musica-storage-setup ./reco_storage/docker/reco-storage-setup && 
 docker build -t musica-storage-webserver ./reco_storage`
 
 Run:
-`docker network create --attachable mainnet; \
-docker-compose -f ./reco_storage/docker-swarm-large.yml up -d && \
-sleep 15 && \
-docker run --network=mainnet musica-storage-setup ./setup-storage_1.sh && \
-docker restart recostorage_reco-storage-router_1 && \
+`docker network create --attachable mainnet; 
+docker-compose -f ./reco_storage/docker-swarm-large.yml up -d && 
+sleep 15 && 
+docker run --network=mainnet musica-storage-setup ./setup-storage_1.sh && 
+docker restart recostorage_reco-storage-router_1 && 
 sleep 30 && \
 docker run --network=mainnet musica-storage-setup ./setup-storage_2.sh`
 
