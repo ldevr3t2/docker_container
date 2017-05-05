@@ -160,7 +160,7 @@ docker-compose -f ./reco_storage/docker-swarm-large.yml up -d &&
 sleep 15 && 
 docker run --network=mainnet musica-storage-setup ./setup-storage_1.sh && 
 docker restart recostorage_reco-storage-router_1 && 
-sleep 30 && \
+sleep 30 && 
 docker run --network=mainnet musica-storage-setup ./setup-storage_2.sh`
 
 **NOTE:** Service will be accessible on port `8083`.
