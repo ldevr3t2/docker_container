@@ -7,6 +7,10 @@ The docker swarm for team 3's final project.
 - This project is a music recognition and recommendation service, runnable as a docker swarm.
 - Version 1.0
 
+# Public Web Link #
+
+A Docker swarm has been set up on Matt Nikkel's desktop, and the services should be available at a link given in the submission. If any issues arise, please send an email to `nikkelma@vt.edu`.
+
 
 # Docker Swarm Setup #
 
@@ -27,10 +31,10 @@ Run `$ ./setup-scripts/setup1_create-machines.sh`
 
 - Sets up 4 VMs: `manager`, `worker1`, `worker2`, `worker3`
 - Creates port forwarding rules to access web servers from localhost
-  * Port `8080`: web app
-  * Port `8081`: fingerprint service
-  * Port `8082`: suggestion service
-  * Port `8083`: storage service
+  * Port `8080`: web app (UI accessible at `http://localhost:8080`)
+  * Port `8081`: fingerprint service (UI accessible at `http://localhost:8081/team2/ui`)
+  * Port `8082`: suggestion service (UI accessible at `http://localhost:8082/v1/ui`)
+  * Port `8083`: storage service (UI accessible at `http://localhost:8083/v1/ui`)
 
 
 ### Step 2 - Create Swarm ###
