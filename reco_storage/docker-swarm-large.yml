@@ -9,21 +9,23 @@ version: '3'
 services:
   # Web server
   reco-storage-web:
-    image: reco-storage-webserver
+    image: musica-storage-webserver
     ports:
-      - "8080:8080"
+      - "8083:8080"
     depends_on:
       - reco-storage-router
     networks:
       - mainnet
     deploy:
       replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
 
   # MongoDB shard router
   reco-storage-router:
-    image: reco-storage-mongodb
+    image: musica-storage-mongodb
     entrypoint:
-      - /home/mongos_start.sh
       - mongos
       - --configdb
       - configset/config-r0:27017,config-r1:27017,config-r2:27017
@@ -31,14 +33,26 @@ services:
       - config-r0
       - config-r1
       - config-r2
+      - shard0-r0
+      - shard0-r1
+      - shard0-r2
+      - shard1-r0
+      - shard1-r1
+      - shard1-r2
+      - shard2-r0
+      - shard2-r1
+      - shard2-r2
     networks:
       - mainnet
     deploy:
       replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
 
   # Config replica set
   config-r0:
-    image: reco-storage-mongodb
+    image: musica-storage-mongodb
     volumes:
       - cfr0:/data/db
     entrypoint:
@@ -62,7 +76,7 @@ services:
           - node.labels.replicanum == 0
 
   config-r1:
-    image: reco-storage-mongodb
+    image: musica-storage-mongodb
     volumes:
       - cfr1:/data/db
     entrypoint:
@@ -86,7 +100,7 @@ services:
           - node.labels.replicanum == 1
 
   config-r2:
-    image: reco-storage-mongodb
+    image: musica-storage-mongodb
     volumes:
       - cfr2:/data/db
     entrypoint:
@@ -111,7 +125,7 @@ services:
   
   # Shard 0 replica set
   shard0-r0:
-    image: reco-storage-mongodb
+    image: musica-storage-mongodb
     volumes:
       - s0r0:/data/db
     entrypoint:
@@ -135,7 +149,7 @@ services:
           - node.labels.replicanum == 0
 
   shard0-r1:
-    image: reco-storage-mongodb
+    image: musica-storage-mongodb
     volumes:
       - s0r1:/data/db
     entrypoint:
@@ -159,7 +173,7 @@ services:
           - node.labels.replicanum == 1
 
   shard0-r2:
-    image: reco-storage-mongodb
+    image: musica-storage-mongodb
     volumes:
       - s0r2:/data/db
     entrypoint:
@@ -184,7 +198,7 @@ services:
 
   # Shard 1 replica set
   shard1-r0:
-    image: reco-storage-mongodb
+    image: musica-storage-mongodb
     volumes:
       - s1r0:/data/db
     entrypoint:
@@ -208,7 +222,7 @@ services:
           - node.labels.replicanum == 0
 
   shard1-r1:
-    image: reco-storage-mongodb
+    image: musica-storage-mongodb
     volumes:
       - s1r1:/data/db
     entrypoint:
@@ -232,7 +246,7 @@ services:
           - node.labels.replicanum == 1
 
   shard1-r2:
-    image: reco-storage-mongodb
+    image: musica-storage-mongodb
     volumes:
       - s1r2:/data/db
     entrypoint:
@@ -257,7 +271,7 @@ services:
 
   # Shard 2 replica set
   shard2-r0:
-    image: reco-storage-mongodb
+    image: musica-storage-mongodb
     volumes:
       - s2r0:/data/db
     entrypoint:
@@ -281,7 +295,7 @@ services:
           - node.labels.replicanum == 0
 
   shard2-r1:
-    image: reco-storage-mongodb
+    image: musica-storage-mongodb
     volumes:
       - s2r1:/data/db
     entrypoint:
@@ -305,7 +319,7 @@ services:
           - node.labels.replicanum == 1
 
   shard2-r2:
-    image: reco-storage-mongodb
+    image: musica-storage-mongodb
     volumes:
       - s2r2:/data/db
     entrypoint:
@@ -327,6 +341,11 @@ services:
           - node.role == worker
           - node.labels.shard2 == true
           - node.labels.replicanum == 2
+  # END Matt's storage containers
+
+networks:
+  mainnet:
+    external: true
 
 volumes:
   cfr0:
@@ -341,8 +360,3 @@ volumes:
   s2r0:
   s2r1:
   s2r2:
-
-networks:
-  mainnet:
-    external: true
-    # attachable: true
