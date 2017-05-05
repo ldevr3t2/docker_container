@@ -354,6 +354,33 @@
 				},
 				{
 					"name": "PUT - Invalid artist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"var schema = {",
+									"  \"required\" : [ \"code\", \"message\" ],",
+									"  \"properties\" : {",
+									"        \"code\" : {",
+									"            \"type\" : \"string\",",
+									"            \"enum\" : [ \"artist_name\" ]",
+									"        },",
+									"        \"message\" : {",
+									"            \"type\" : \"string\"",
+									"        }",
+									"    }",
+									"};",
+									"",
+									"tests[\"Status code is 404\"] = responseCode.code === 404;",
+									"tests[\"Valid Format\"] = tv4.validate(jsonData, schema);"
+								]
+							}
+						}
+					],
 					"request": {
 						"url": "http://{{hostname}}:{{port}}/v1/artist=test_artist",
 						"method": "PUT",
@@ -366,7 +393,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "Updated artist's connections"
+							"raw": "{\n\t\"artists\": [\n\t\t{\n\t\t\t\"name\":\"test_artist_child1_update\",\n\t\t\t\"score\":16.17\n\t\t},\n\t\t{\n\t\t\t\"name\":\"test_artist_child2_update\",\n\t\t\t\"score\":15.27\n\t\t},\n\t\t{\n\t\t\t\"name\":\"test_artist_child3_update\",\n\t\t\t\"score\":14.37\n\t\t},\n\t\t{\n\t\t\t\"name\":\"test_artist_child4_update\",\n\t\t\t\"score\":13.47\n\t\t},\n\t\t{\n\t\t\t\"name\":\"test_artist_child5_update\",\n\t\t\t\"score\":12.57\n\t\t}\n\t]\n}"
 						},
 						"description": ""
 					},
@@ -380,7 +407,23 @@
 							"script": {
 								"type": "text/javascript",
 								"exec": [
-									"tests[\"Status code is 404\"] = responseCode.code === 404;"
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"var schema = {",
+									"  \"required\" : [ \"code\", \"message\" ],",
+									"  \"properties\" : {",
+									"        \"code\" : {",
+									"            \"type\" : \"string\",",
+									"            \"enum\" : [ \"artist_name\" ]",
+									"        },",
+									"        \"message\" : {",
+									"            \"type\" : \"string\"",
+									"        }",
+									"    }",
+									"};",
+									"",
+									"tests[\"Status code is 404\"] = responseCode.code === 404;",
+									"tests[\"Valid Format\"] = tv4.validate(jsonData, schema);"
 								]
 							}
 						}
